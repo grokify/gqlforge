@@ -1,0 +1,42 @@
+{
+  "irVersion": "1.0",
+  "project": "gqlforge",
+  "repository": "https://github.com/grokify/gqlforge",
+  "versioning": "semver",
+  "commitConvention": "conventional",
+  "maintainers": ["grokify"],
+  "releases": [
+    {
+      "version": "v0.1.0",
+      "date": "2026-06-07",
+      "commit": "aa42fa4",
+      "highlights": [
+        { "description": "GraphQL client SDK generator for Go using genqlient" },
+        { "description": "Schema introspection with SDL and JSON output" },
+        { "description": "goauth integration for flexible authentication" }
+      ],
+      "added": [
+        { "description": "GraphQL introspection package with SDL conversion", "commit": "25245ed" },
+        { "description": "Introspection client supporting bearer tokens and goauth credentials", "commit": "25245ed" },
+        { "description": "ToSDL() method for converting introspection result to Schema Definition Language", "commit": "25245ed" },
+        { "description": "ToJSON() method for raw introspection result export", "commit": "25245ed" },
+        { "description": "CLI root command with global flags: --creds, --account, --output, --verbose", "commit": "749b000" },
+        { "description": "`introspect` command to fetch GraphQL schema from endpoints", "commit": "823b6f7" },
+        { "description": "Authentication via goauth credentials file or bearer token", "commit": "823b6f7" },
+        { "description": "Output formats: SDL (.graphql) and JSON (.json)", "commit": "823b6f7" },
+        { "description": "`init` command to scaffold genqlient project structure", "commit": "174d06a" },
+        { "description": "Project scaffolding creates genqlient.yaml, schema.graphql, operations/, generated/", "commit": "174d06a" },
+        { "description": "`generate` command wrapping genqlient for code generation", "commit": "f3d9c14" },
+        { "description": "`version` command for displaying version information", "commit": "44678d8" }
+      ],
+      "documentation": [
+        { "description": "README with workflow documentation: introspect → define operations → generate", "commit": "ab18d3a" },
+        { "description": "Usage examples for all CLI commands", "commit": "ab18d3a" }
+      ],
+      "dependencies": [
+        { "description": "github.com/spf13/cobra for CLI framework", "commit": "aa42fa4" },
+        { "description": "github.com/grokify/goauth for authentication", "commit": "aa42fa4" }
+      ]
+    }
+  ]
+}
