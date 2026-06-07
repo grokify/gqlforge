@@ -9,7 +9,7 @@
     {
       "version": "v0.1.0",
       "date": "2026-06-07",
-      "commit": "aa42fa4",
+      "commit": "4498216",
       "highlights": [
         { "description": "GraphQL client SDK generator for Go using genqlient" },
         { "description": "Schema introspection with SDL and JSON output" },
@@ -34,8 +34,8 @@
         { "description": "Usage examples for all CLI commands", "commit": "ab18d3a" }
       ],
       "dependencies": [
-        { "description": "github.com/spf13/cobra for CLI framework", "commit": "aa42fa4" },
-        { "description": "github.com/grokify/goauth for authentication", "commit": "aa42fa4" }
+        { "description": "github.com/spf13/cobra for CLI framework", "commit": "4498216" },
+        { "description": "github.com/grokify/goauth for authentication", "commit": "4498216" }
       ]
     }
   ]
