@@ -1,0 +1,45 @@
+site_name: gqlforge
+site_description: GraphQL client SDK generator for Go
+site_url: https://grokify.github.io/gqlforge
+repo_url: https://github.com/grokify/gqlforge
+repo_name: grokify/gqlforge
+
+theme:
+  name: material
+  palette:
+    - scheme: slate
+      primary: deep purple
+      accent: purple
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    - scheme: default
+      primary: deep purple
+      accent: purple
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+  features:
+    - navigation.instant
+    - navigation.sections
+    - content.code.copy
+
+nav:
+  - Home: index.md
+  - CLI Reference: cli.md
+  - Releases:
+    - v0.1.0: releases/v0.1.0.md
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - admonitions
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/grokify/gqlforge
