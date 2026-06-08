@@ -9,7 +9,7 @@
     {
       "version": "v0.2.0",
       "date": "2026-06-07",
-      "commit": "b387445",
+      "commit": "10ebd97",
       "highlights": [
         { "description": "Operation scaffolding from schema Query/Mutation types" },
         { "description": "Schema validation and drift detection" },
