@@ -3,9 +3,9 @@ package cmd
 import (
 	"fmt"
 	"os"
-	"os/exec"
 	"path/filepath"
 
+	"github.com/Khan/genqlient/generate"
 	"github.com/spf13/cobra"
 )
 
@@ -18,13 +18,12 @@ var generateCmd = &cobra.Command{
 	Short: "Generate Go client code using genqlient",
 	Long: `Generate type-safe Go client code from GraphQL operations.
 
-This command wraps genqlient to generate Go code from your schema and operations.
+This command uses genqlient as a library to generate Go code from your schema and operations.
 
 Prerequisites:
-  1. Install genqlient: go install github.com/Khan/genqlient@latest
-  2. Have a valid schema.graphql (run 'gqlforge introspect' first)
-  3. Define operations in operations/*.graphql files
-  4. Configure genqlient.yaml
+  1. Have a valid schema.graphql (run 'gqlforge introspect' first)
+  2. Define operations in operations/*.graphql files
+  3. Configure genqlient.yaml
 
 Example:
   gqlforge generate
@@ -39,14 +38,7 @@ func init() {
 }
 
 func runGenerate(cmd *cobra.Command, args []string) error {
-	// Check if genqlient is installed
-	genqlientPath, err := exec.LookPath("genqlient")
-	if err != nil {
-		return fmt.Errorf("genqlient not found in PATH. Install with: go install github.com/Khan/genqlient@latest")
-	}
-	verboseLog("Found genqlient: %s", genqlientPath)
-
-	// Check if config exists
+	// Resolve config path
 	configPath := generateConfig
 	if !filepath.IsAbs(configPath) {
 		configPath = filepath.Join(outputDir, configPath)
@@ -58,16 +50,32 @@ func runGenerate(cmd *cobra.Command, args []string) error {
 
 	verboseLog("Using config: %s", configPath)
 
-	// Run genqlient
-	genqlientCmd := exec.Command("genqlient", configPath)
-	genqlientCmd.Dir = filepath.Dir(configPath)
-	genqlientCmd.Stdout = os.Stdout
-	genqlientCmd.Stderr = os.Stderr
+	// Load and validate config
+	config, err := generate.ReadAndValidateConfig(configPath)
+	if err != nil {
+		return fmt.Errorf("loading config: %w", err)
+	}
 
-	fmt.Printf("Running: genqlient %s\n", configPath)
+	verboseLog("Config loaded: schema=%s, operations=%v", config.Schema, config.Operations)
 
-	if err := genqlientCmd.Run(); err != nil {
-		return fmt.Errorf("genqlient failed: %w", err)
+	// Generate code
+	generated, err := generate.Generate(config)
+	if err != nil {
+		return fmt.Errorf("generation failed: %w", err)
+	}
+
+	// Write generated files
+	for filename, content := range generated {
+		// Ensure directory exists
+		dir := filepath.Dir(filename)
+		if err := os.MkdirAll(dir, 0755); err != nil {
+			return fmt.Errorf("creating directory %s: %w", dir, err)
+		}
+
+		if err := os.WriteFile(filename, content, 0644); err != nil {
+			return fmt.Errorf("writing %s: %w", filename, err)
+		}
+		fmt.Printf("Wrote: %s\n", filename)
 	}
 
 	fmt.Println("Generation complete!")
