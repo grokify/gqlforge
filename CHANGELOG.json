@@ -7,6 +7,39 @@
   "maintainers": ["grokify"],
   "releases": [
     {
+      "version": "v0.2.0",
+      "date": "2026-06-07",
+      "commit": "b387445",
+      "highlights": [
+        { "description": "Operation scaffolding from schema Query/Mutation types" },
+        { "description": "Schema validation and drift detection" },
+        { "description": "File watching with auto-regeneration" },
+        { "description": "Embedded genqlient (no CLI installation required)" }
+      ],
+      "added": [
+        { "description": "`scaffold` command to generate stub operations from schema types", "commit": "8ce91db" },
+        { "description": "Support --type, --depth, --include, --exclude flags for scaffold filtering", "commit": "8ce91db" },
+        { "description": "scaffold package with Generator for operation generation", "commit": "8ce91db" },
+        { "description": "`validate` command to check operations against schema", "commit": "3e3eb81" },
+        { "description": "Support --strict mode and --json output for validation", "commit": "3e3eb81" },
+        { "description": "`diff` command to compare local schema to remote endpoint", "commit": "0c63281" },
+        { "description": "Detect added/removed types and fields with breaking change identification", "commit": "0c63281" },
+        { "description": "Support --breaking-only and --json output for diff", "commit": "0c63281" },
+        { "description": "`watch` command for auto-regeneration on file changes", "commit": "bbd943b" },
+        { "description": "Debounced file watching with fsnotify", "commit": "bbd943b" }
+      ],
+      "changed": [
+        { "description": "`generate` command now uses genqlient as embedded library instead of exec", "commit": "303bb53", "breaking": true },
+        { "description": "genqlient CLI no longer required to be installed separately", "commit": "303bb53" }
+      ],
+      "dependencies": [
+        { "description": "github.com/Khan/genqlient v0.8.1 (direct, embedded generation)", "commit": "b387445" },
+        { "description": "github.com/vektah/gqlparser/v2 v2.5.33 (direct, validation)", "commit": "b387445" },
+        { "description": "github.com/fsnotify/fsnotify v1.10.1 (direct, watch command)", "commit": "b387445" },
+        { "description": "github.com/bmatcuk/doublestar/v4 v4.10.0 (direct, glob patterns)", "commit": "b387445" }
+      ]
+    },
+    {
       "version": "v0.1.0",
       "date": "2026-06-07",
       "commit": "4498216",

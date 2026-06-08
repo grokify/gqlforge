@@ -28,6 +28,7 @@ nav:
   - Home: index.md
   - CLI Reference: cli.md
   - Releases:
+    - v0.2.0: releases/v0.2.0.md
     - v0.1.0: releases/v0.1.0.md
 
 markdown_extensions:
@@ -37,7 +38,7 @@ markdown_extensions:
   - pymdownx.tabbed:
       alternate_style: true
   - tables
-  - admonitions
+  - admonition
 
 extra:
   social:
