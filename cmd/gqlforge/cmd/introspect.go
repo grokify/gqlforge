@@ -109,7 +109,7 @@ func runIntrospect(cmd *cobra.Command, args []string) error {
 		if err != nil {
 			return fmt.Errorf("failed to convert to SDL: %w", err)
 		}
-		if err := os.WriteFile(sdlPath, []byte(sdl), 0o600); err != nil {
+		if err := os.WriteFile(sdlPath, []byte(sdl), 0o600); err != nil { //nolint:gosec // G703: Path from CLI flag
 			return fmt.Errorf("failed to write SDL: %w", err)
 		}
 		fmt.Printf("Wrote SDL schema: %s\n", sdlPath)
@@ -122,7 +122,7 @@ func runIntrospect(cmd *cobra.Command, args []string) error {
 		if err != nil {
 			return fmt.Errorf("failed to convert to JSON: %w", err)
 		}
-		if err := os.WriteFile(jsonPath, jsonData, 0o600); err != nil {
+		if err := os.WriteFile(jsonPath, jsonData, 0o600); err != nil { //nolint:gosec // G703: Path from CLI flag
 			return fmt.Errorf("failed to write JSON: %w", err)
 		}
 		fmt.Printf("Wrote JSON schema: %s\n", jsonPath)

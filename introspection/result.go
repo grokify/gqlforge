@@ -51,10 +51,7 @@ func (r *Result) ToSDL() (string, error) {
 			continue
 		}
 
-		sdl, err := typeToSDL(t)
-		if err != nil {
-			return "", err
-		}
+		sdl := typeToSDL(t)
 		if sdl != "" {
 			sb.WriteString(sdl)
 			sb.WriteString("\n")
@@ -74,7 +71,7 @@ func (r *Result) ToSDL() (string, error) {
 	return sb.String(), nil
 }
 
-func typeToSDL(t FullType) (string, error) {
+func typeToSDL(t FullType) string {
 	var sb strings.Builder
 
 	// Write description
@@ -86,7 +83,7 @@ func typeToSDL(t FullType) (string, error) {
 	case KindScalar:
 		// Skip built-in scalars
 		if isBuiltInScalar(t.Name) {
-			return "", nil
+			return ""
 		}
 		fmt.Fprintf(&sb, "scalar %s\n", t.Name)
 
@@ -145,7 +142,7 @@ func typeToSDL(t FullType) (string, error) {
 		sb.WriteString("}\n")
 	}
 
-	return sb.String(), nil
+	return sb.String()
 }
 
 func fieldToSDL(f Field, indent string) string {
