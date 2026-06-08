@@ -116,7 +116,7 @@ func runScaffold(cmd *cobra.Command, args []string) error {
 	// Write files
 	for filename, content := range files {
 		path := filepath.Join(outDir, filename)
-		if err := os.WriteFile(path, []byte(content), 0644); err != nil {
+		if err := os.WriteFile(path, []byte(content), 0o600); err != nil {
 			return fmt.Errorf("failed to write %s: %w", path, err)
 		}
 		fmt.Printf("Wrote: %s\n", path)

@@ -72,7 +72,7 @@ func runGenerate(cmd *cobra.Command, args []string) error {
 			return fmt.Errorf("creating directory %s: %w", dir, err)
 		}
 
-		if err := os.WriteFile(filename, content, 0644); err != nil {
+		if err := os.WriteFile(filename, content, 0o600); err != nil {
 			return fmt.Errorf("writing %s: %w", filename, err)
 		}
 		fmt.Printf("Wrote: %s\n", filename)

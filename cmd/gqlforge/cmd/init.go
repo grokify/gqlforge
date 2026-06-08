@@ -85,7 +85,7 @@ package: %s
 `, initPackage)
 
 	configPath := filepath.Join(projectDir, "genqlient.yaml")
-	if err := os.WriteFile(configPath, []byte(genqlientConfig), 0644); err != nil {
+	if err := os.WriteFile(configPath, []byte(genqlientConfig), 0o600); err != nil {
 		return fmt.Errorf("failed to write genqlient.yaml: %w", err)
 	}
 	fmt.Printf("Created: %s\n", configPath)
@@ -106,7 +106,7 @@ package: %s
 # }
 `
 	schemaPath := filepath.Join(projectDir, "schema.graphql")
-	if err := os.WriteFile(schemaPath, []byte(schemaContent), 0644); err != nil {
+	if err := os.WriteFile(schemaPath, []byte(schemaContent), 0o600); err != nil {
 		return fmt.Errorf("failed to write schema.graphql: %w", err)
 	}
 	fmt.Printf("Created: %s\n", schemaPath)
@@ -137,7 +137,7 @@ package: %s
 # }
 `
 	examplePath := filepath.Join(projectDir, "operations", "example.graphql")
-	if err := os.WriteFile(examplePath, []byte(exampleOps), 0644); err != nil {
+	if err := os.WriteFile(examplePath, []byte(exampleOps), 0o600); err != nil {
 		return fmt.Errorf("failed to write example.graphql: %w", err)
 	}
 	fmt.Printf("Created: %s\n", examplePath)
@@ -151,7 +151,7 @@ generated/
 *.token
 `
 	gitignorePath := filepath.Join(projectDir, ".gitignore")
-	if err := os.WriteFile(gitignorePath, []byte(gitignore), 0644); err != nil {
+	if err := os.WriteFile(gitignorePath, []byte(gitignore), 0o600); err != nil {
 		return fmt.Errorf("failed to write .gitignore: %w", err)
 	}
 	fmt.Printf("Created: %s\n", gitignorePath)
@@ -173,7 +173,7 @@ operations_dir: operations
 `, initEndpoint)
 
 	forgeConfigPath := filepath.Join(projectDir, "gqlforge.yaml")
-	if err := os.WriteFile(forgeConfigPath, []byte(forgeConfig), 0644); err != nil {
+	if err := os.WriteFile(forgeConfigPath, []byte(forgeConfig), 0o600); err != nil {
 		return fmt.Errorf("failed to write gqlforge.yaml: %w", err)
 	}
 	fmt.Printf("Created: %s\n", forgeConfigPath)
