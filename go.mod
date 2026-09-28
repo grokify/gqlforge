@@ -4,7 +4,7 @@ go 1.26.0
 
 require (
 	github.com/Khan/genqlient v0.8.1
-	github.com/bmatcuk/doublestar/v4 v4.10.0
+	github.com/bmatcuk/doublestar/v4 v4.10.2
 	github.com/fsnotify/fsnotify v1.10.1
 	github.com/grokify/goauth v0.23.30
 	github.com/spf13/cobra v1.10.2
